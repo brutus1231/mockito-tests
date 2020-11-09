@@ -9,6 +9,9 @@ public class UserService {
     private final UserValidator userValidator;
 
     public void addUser(User user) {
-        //TODO
+        if (userValidator.validate(user)) {
+            userRepository.add(user);
+        }
+        throw new IllegalStateException("Wrong user data !!");
     }
 }
