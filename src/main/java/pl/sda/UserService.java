@@ -11,6 +11,7 @@ public class UserService {
     public void addUser(User user) {
         if (userValidator.validate(user)) {
             userRepository.add(user);
+            return;
         }
         throw new IllegalStateException("Wrong user data !!");
     }
