@@ -13,7 +13,7 @@ public class User {
 
     private String email;
     private String password;
-    private Date reqistratonDate;
+    private Date registrationDate;
     private BigDecimal salary;
 
 }

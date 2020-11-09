@@ -11,9 +11,13 @@ public class UserRepository {
         List<User> users = new ArrayList<>();
 
         users.add(User.builder().email("zenek@wp.pl").password("haslo123")
-                .reqistratonDate(new Date()).salary(BigDecimal.TEN).build());
+                .registrationDate(new Date()).salary(BigDecimal.TEN).build());
         users.add(User.builder().email("ola@wp.pl").password("ola123")
-                .reqistratonDate(new Date()).salary(BigDecimal.ONE).build());
+                .registrationDate(new Date()).salary(BigDecimal.ONE).build());
         return users;
+    }
+
+    public void add(User user) {
+        System.out.println("Dodano użytkownika do bazy danych");
     }
 }
