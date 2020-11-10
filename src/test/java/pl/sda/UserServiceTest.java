@@ -1,6 +1,7 @@
 package pl.sda;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -23,12 +24,17 @@ class UserServiceTest {
     @Mock
     private UserValidator userValidator;
 
+    UserService userService;
+
+    @BeforeEach
+    public void setup() {
+        userService = new UserService(userRepository, userValidator);
+    }
+
     @Test
     public void shouldTestAddUser() {
         //given
         User user = User.builder().email("kasia@wp.pl").password("kasia123").salary(BigDecimal.TEN).build();
-
-        UserService userService = new UserService(userRepository, userValidator);
 
         //when
         Mockito.when(userValidator.validate(user)).thenReturn(true);
@@ -45,7 +51,6 @@ class UserServiceTest {
     public void shouldThrowExceptionWhenNoUser() {
         //given
         User user = null;
-        UserService userService = new UserService(userRepository, userValidator);
         //when
         Mockito.when(userValidator.validate(user)).thenReturn(false);
         //then
