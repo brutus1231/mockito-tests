@@ -40,4 +40,15 @@ class UserServiceTest {
         Mockito.verifyNoMoreInteractions(userRepository);
         Assertions.assertDoesNotThrow(() -> userService.addUser(user));
     }
+
+    @Test
+    public void shouldThrowExceptionWhenNoUser() {
+        //given
+        User user = null;
+        UserService userService = new UserService(userRepository, userValidator);
+        //when
+        Mockito.when(userValidator.validate(user)).thenReturn(false);
+        //then
+        Assertions.assertThrows(IllegalStateException.class, () -> userService.addUser(user));
+    }
 }
