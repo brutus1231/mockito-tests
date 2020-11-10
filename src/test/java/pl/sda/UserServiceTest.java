@@ -1,12 +1,16 @@
 package pl.sda;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.lang.reflect.Executable;
 import java.math.BigDecimal;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,5 +38,6 @@ class UserServiceTest {
         Mockito.verify(userRepository).add(user);
         Mockito.verifyNoMoreInteractions(userValidator);
         Mockito.verifyNoMoreInteractions(userRepository);
+        Assertions.assertDoesNotThrow(() -> userService.addUser(user));
     }
 }
